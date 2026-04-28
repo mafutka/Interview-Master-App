@@ -11,4 +11,10 @@ import { TestComponent } from './components/test/test';
 })
 export class App {
   protected readonly title = signal('angular-interview-app');
+
+  messageFromChild =''
+  getMassageFromChild(massage: string) {
+    this.messageFromChild = massage
+
+  }
 }

@@ -1,2 +1,9 @@
 <p>test works!</p>
 <p>{{title}}</p>
+<p>{{getFullName()}}</p>
+<p [ngStyle]="{color: 'blue'}">ngStyle</p>
+<p [ngClass]="{'active': isActive, 'disabled': isDisabled}">ngClass</p>
+
+<button [disabled]="!isEnable">Click me</button>
+<button (click)="toggleState()">toggleState</button>
+<button (click)="sendMassageToPArent()">Letter to parant</button>
