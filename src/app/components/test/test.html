@@ -1,9 +1,57 @@
 <p>test works!</p>
-<p>{{title}}</p>
-<p>{{getFullName()}}</p>
-<p [ngStyle]="{color: 'blue'}">ngStyle</p>
-<p [ngClass]="{'active': isActive, 'disabled': isDisabled}">ngClass</p>
+
+<p>{{ title }}</p>
+<p>{{ getFullName() }}</p>
+
+<p [ngStyle]="{ color: 'blue' }">ngStyle</p>
+<p [ngClass]="{ active: isActive, disabled: isDisabled }">ngClass</p>
 
 <button [disabled]="!isEnable">Click me</button>
 <button (click)="toggleState()">toggleState</button>
-<button (click)="sendMassageToPArent()">Letter to parant</button>
+
+<p appHighlight highlightColor="blue">Mouse Enter</p>
+
+
+@if (isClickState) {
+  <p>btn on</p>
+} @else {
+  <p>btn off</p>
+}
+
+<button (click)="toggleState()">switch state</button>
+
+
+<ul>
+  <li *ngFor="let user of users; index as i">
+    {{ i + 1 }}: {{ user }}
+  </li>
+</ul>
+
+@switch (appState) {
+  @case ('active') {
+    <p>active</p>
+  }
+  @case ('paused') {
+    <p>paused</p>
+  }
+  @case ('stopped') {
+    <p>stopped</p>
+  }
+  @default {
+    <p>default</p>
+  }
+}
+
+
+<ul>
+  @for (item of items; track item.id; let idx = $index; let e = $even) {
+    <li>
+      fruit {{ idx + 1 }}: {{ item.name }}
+      @if (e) {
+        (even)
+      }
+    </li>
+  } @empty {
+    <li>no items found</li>
+  }
+</ul>

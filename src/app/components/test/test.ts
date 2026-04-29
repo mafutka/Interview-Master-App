@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {HighlightDirective} from '../../directives/highlight'
 
 @Component({
   selector: 'app-test',
-  imports: [CommonModule],
+  imports: [CommonModule, HighlightDirective],
   templateUrl: './test.html',
   styleUrls: ['./test.scss'],
 })
@@ -18,7 +19,20 @@ export class TestComponent {
   isDisabled: boolean = false
 
   isClickState: boolean = false
-  @Output() messageFromChild =new EventEmitter<String>()
+  users= ['Alina', 'Petya', 'Valia',  'Sasha']
+  items =[
+   { "id": 1,
+    "name": 'apple',},
+     { "id": 2,
+    "name": 'pear',},
+     { "id": 3,
+    "name": 'cherry',},
+     { "id": 4,
+    "name": 'grapes'}
+    ]
+
+  appState ='paused'
+@Output() messageFromChild = new EventEmitter<string>()
 
   getFullName() {
     return `My name is ${this.firstName} ${this.lastName}`
@@ -27,7 +41,7 @@ export class TestComponent {
 this.isClickState = true
   }
 
-  sendMassageToPArent() {
+  sendMessageToParent() {
     this.messageFromChild.emit('Imyourson')
   }
 }
