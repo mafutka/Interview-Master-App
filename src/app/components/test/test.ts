@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {HighlightDirective} from '../../directives/highlight'
+import {TrancatePipe} from '../../pipes/trancate-pipe'
 
 @Component({
   selector: 'app-test',
-  imports: [CommonModule, HighlightDirective],
+  imports: [CommonModule, HighlightDirective, TrancatePipe],
   templateUrl: './test.html',
   styleUrls: ['./test.scss'],
 })
