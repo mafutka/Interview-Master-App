@@ -1,61 +1,15 @@
+import { FormsModule } from '@angular/forms';
+
 <p>test works!</p>
 
-<p>{{ title }}</p>
-<p>{{ getFullName() }}</p>
+<div class="todo-container">
+  <input [(ngModel)]="newTask" placeholder="Add new task" class="todo-input">
+  <button (click)="addTask()" class="add-btn">Add</button>
 
-<p [ngStyle]="{ color: 'blue' }">ngStyle</p>
-<p [ngClass]="{ active: isActive, disabled: isDisabled }">ngClass</p>
-
-<button [disabled]="!isEnable">Click me</button>
-<button (click)="toggleState()">toggleState</button>
-
-<p appHighlight highlightColor="blue">Mouse Enter</p>
-
-
-@if (isClickState) {
-  <p>btn on</p>
-} @else {
-  <p>btn off</p>
-}
-
-<button (click)="toggleState()">switch state</button>
-
-
-<ul>
-  <li *ngFor="let user of users; index as i">
-    {{ i + 1 }}: {{ user }}
-  </li>
-</ul>
-
-@switch (appState) {
-  @case ('active') {
-    <p>active</p>
-  }
-  @case ('paused') {
-    <p>paused</p>
-  }
-  @case ('stopped') {
-    <p>stopped</p>
-  }
-  @default {
-    <p>default</p>
-  }
-}
-
-
-<ul>
-  @for (item of items; track item.id; let idx = $index; let e = $even) {
-    <li>
-      fruit {{ idx + 1 }}: {{ item.name }}
-      @if (e) {
-        (even)
-      }
+  <ul class="todo-list">
+    <li *ngFor="let task of tasks; let i = index" class="todo-item">
+      {{task}}
+      <button (click)="removeTask(i)" class="remove-btn">Remove</button>
     </li>
-  } @empty {
-    <li>no items found</li>
-  }
-</ul>
-
-<p>{{0.5 | percent}}</p>
-
-<p>{{"long text which needs to be sliced" | trancate : 18}}</p>
+  </ul>
+</div>

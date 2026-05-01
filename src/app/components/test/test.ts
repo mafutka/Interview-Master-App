@@ -1,48 +1,37 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {HighlightDirective} from '../../directives/highlight'
-import {TrancatePipe} from '../../pipes/trancate-pipe'
+import { FormsModule } from '@angular/forms';
+import { TodoService } from '../../services/todo';
 
 @Component({
   selector: 'app-test',
-  imports: [CommonModule, HighlightDirective, TrancatePipe],
+  imports: [CommonModule, FormsModule],
+   standalone: true,
   templateUrl: './test.html',
   styleUrls: ['./test.scss'],
 })
-export class TestComponent {
-  title = 'Its interpolation'
-  firstName = 'Maria'
-  lastName = 'Skobeleva'
+export class TestComponent implements OnInit {
+  newTask: string = '';
+  tasks: string[] = []
 
-  isEnable: boolean = false
+  constructor (private todoService: TodoService) {} 
 
-  isActive: boolean = true
-  isDisabled: boolean = false
-
-  isClickState: boolean = false
-  users= ['Alina', 'Petya', 'Valia',  'Sasha']
-  items =[
-   { "id": 1,
-    "name": 'apple',},
-     { "id": 2,
-    "name": 'pear',},
-     { "id": 3,
-    "name": 'cherry',},
-     { "id": 4,
-    "name": 'grapes'}
-    ]
-
-  appState ='paused'
-@Output() messageFromChild = new EventEmitter<string>()
-
-  getFullName() {
-    return `My name is ${this.firstName} ${this.lastName}`
-  }
-  toggleState() {
-this.isClickState = true
+  ngOnInit(): void {
+    this.tasks = this.todoService.getTasks()
   }
 
-  sendMessageToParent() {
-    this.messageFromChild.emit('Imyourson')
+  addTask() {
+    if(this.newTask.trim() !== '')
+      this.todoService.addTask(this.newTask.trim());
+    this.newTask = '';
+    this.updateTasks()
+  }
+
+  removeTask(index: number){
+this.todoService.removeTask(index)
+this.updateTasks()
+  }
+  private updateTasks(){
+    this.tasks = this.todoService.getTasks();
   }
 }
