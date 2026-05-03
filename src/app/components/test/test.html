@@ -2,7 +2,27 @@
 
 <p>test works!</p>
 
-<div class="todo-container">
+<div class="container">
+  <form [formGroup]="complexForm" (ngSubmit)="onSubmit()">
+    <div class="formName">
+      <label for="name">Name:</label>
+      <input type="text" fornControlName="name">
+      <div *ngIf="name?.invalid && name&.touched" class="error">
+        Name is invalid
+      </div>
+    </div>
+
+       <div class="formName">
+      <label for="email">Email:</label>
+      <input type="text" fornControlName="email">
+      <div *ngIf="email?.invalid && email&.touched" class="error">
+        email is invalid
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- <div class="todo-container">
   <input [(ngModel)]="newTask" placeholder="Add new task" class="todo-input"/>
   <button (click)="addTask()" class="add-btn">Add</button>
 
@@ -12,4 +32,4 @@
       <button (click)="removeTask(i)" class="remove-btn">Remove</button>
     </li>
   </ul>
-</div>
+</div> -->
