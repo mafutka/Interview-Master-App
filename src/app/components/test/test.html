@@ -6,8 +6,8 @@
   <form [formGroup]="complexForm" (ngSubmit)="onSubmit()">
     <div class="formName">
       <label for="name">Name:</label>
-      <input type="text" fornControlName="name">
-      <div *ngIf="name?.invalid && name&.touched" class="error">
+      <input type="text" formControlName="name">
+      <div *ngIf="name?.invalid && name?.touched" class="error">
         Name is invalid
       </div>
     </div>
@@ -15,7 +15,7 @@
        <div class="formName">
       <label for="email">Email:</label>
       <input type="text" fornControlName="email">
-      <div *ngIf="email?.invalid && email&.touched" class="error">
+      <div *ngIf="email?.invalid && email?.touched" class="error">
         email is invalid
       </div>
     </div>
