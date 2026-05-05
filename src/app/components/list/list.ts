@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { QuestionCard } from '../question-card/question-card';
+import { Questions } from '../../services/questions';
 
 
 @Component({
@@ -9,10 +10,14 @@ import { QuestionCard } from '../question-card/question-card';
   templateUrl: './list.html',
   styleUrl: './list.scss',
 })
-export class List {
-   questions = [
-    { id: 1, title: 'What is Angular?', difficulty: 'easy', category: 'Angular' },
-    { id: 2, title: 'What is dependency injection?', difficulty: 'medium', category: 'Angular' },
-    { id: 3, title: 'Explain closures in JS', difficulty: 'hard', category: 'JavaScript' }
-  ];
+export class List implements OnInit {
+    @Input() category!: string;
+
+  questions: any[] = [];
+
+  constructor(private qs: Questions) {}
+
+  ngOnInit() {
+    this.questions = this.qs.getByCategory(this.category);
+  }
 }
